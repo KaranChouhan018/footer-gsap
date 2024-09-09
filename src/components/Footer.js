@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
 
 // Function to preload images
 const preloadImages = (imageUrls) => {
@@ -63,11 +64,10 @@ export default function Footer() {
             scale: 0.5,
             z: 950,
             duration: 20,
-            ease: 'power2.out',
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: '.footer-section',
               start: 'top top',
-              markers:true,
               toggleActions: 'play none none none',
             },
             onComplete: () => animateImage(image),
@@ -80,35 +80,34 @@ export default function Footer() {
       images.forEach((image, index) => {
         setTimeout(() => {
           animateImage(image);
-        }, index * 2000);
+        }, index * 2500);
       });
 
       return () => {
         window.removeEventListener('mousemove', moveBackground);
       };
     });
-
   }, []);
 
   return (
     <footer className="footer-section relative w-full h-screen overflow-hidden bg-black">
       <div className="footer-background absolute top-0 left-0 w-full h-full z-10">
         {Array.from({ length: 20 }).map((_, i) => (
-          <img
+          <Image
             key={i}
-            className={`image image${i + 1} absolute w-[20%] h-[20%] object-cover`}
+            className={`image image${i + 1} absolute`}
             src={`/image/image${i + 1}.jpg`}
             alt={`Footer image ${i + 1}`}
-            width={500} // Set appropriate width
-            height={500} // Set appropriate height
+            width={500}
+            height={500}
             layout="intrinsic"
-            priority={i === 0} // Prioritize the first image for LCP
-            loading={i === 0 ? "eager" : "lazy"} // Lazy load except for the first image
+            priority={i === 0} // Set priority for the first image for faster loading
+            loading={i === 0 ? "eager" : "lazy"} // Eager load the first image, lazy load the rest
           />
         ))}
       </div>
       <div className="footer-content relative z-20 text-white text-center flex items-center justify-center w-full h-full">
-        <h1 className="text-2xl md:text-[10rem] font-light ">Let's talk</h1>
+        <h1 className="text-2xl md:text-[10rem] font-light">Let&apos;s talk</h1> {/* Escape apostrophe */}
       </div>
 
       {/* New Footer Bar Section */}
@@ -144,7 +143,7 @@ export default function Footer() {
             </svg>
             <span><a href="#" target="_blank">Madrid</a></span>
           </p>
-          <p className='hidden md:block' >Gran Vía, 68</p>
+          <p className='hidden md:block'>Gran Vía, 68</p>
           <p className='hidden md:block'>28013</p>
         </div>
         <div className="col-3">
@@ -154,7 +153,7 @@ export default function Footer() {
         </div>
         <div className="col-4">
           <p>Business inquiries</p>
-          <p><a href="#" target="_blank">hello@hanzo.es</a></p>
+          <p><a href="mailto:hello@hanzo.es" target="_blank">hello@hanzo.es</a></p>
         </div>
       </div>
     </footer>
