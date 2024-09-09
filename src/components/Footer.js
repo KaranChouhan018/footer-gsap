@@ -60,7 +60,7 @@ export default function Footer() {
           { opacity: 0, scale: 0.5, z: -500 },
           {
             opacity: 1,
-            scale: 0.7,
+            scale: 0.5,
             z: 950,
             duration: 20,
             ease: 'power3.out',
@@ -96,10 +96,11 @@ export default function Footer() {
         {Array.from({ length: 20 }).map((_, i) => (
           <img
             key={i}
-            className={`image image${i + 1} absolute w-[200px] h-[300px] object-cover`}
+            className={`image image${i + 1} absolute w-[20%] h-[20%] object-cover`}
             src={`/image/image${i + 1}.jpg`}
             alt={`Footer image ${i + 1}`}
             loading="lazy"
+            fetchPriority='high'
           />
         ))}
       </div>

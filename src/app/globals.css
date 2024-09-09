@@ -27,12 +27,12 @@
 }
 .footer-background img {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transform: translateZ(-500px) scale(0.1);
+    transform: translateZ(-500px);
   }
 
   /* Media query for mobile screens */
@@ -55,7 +55,7 @@
 .footer-background .image10 { top: 20%; left: 10%; }
 .footer-background .image11 { top: 10%; left: 80%; }
 .footer-background .image12 { top: 25%; left: 60%; }
-.footer-background .image13 { top: 15%; left: 40%; }
+.footer-background .image13 { top: 15%; left: 20%; }
 .footer-background .image14 { top: 70%; left: 85%; }
 .footer-background .image15 { top: 45%; left: 15%; }
 .footer-background .image16 { top: 55%; left: 35%; }
