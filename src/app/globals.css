@@ -2,26 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+    font-family: 'SUD';
+    src: url('/src/app/fonts/SuisseIntl-Thin.fbc3b7e.woff2') format('woff2');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.footer-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+    perspective: 1000px;
+}
+
+.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-style: preserve-3d;
+}
+.footer-background img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: translateZ(-500px) scale(0.1);
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Media query for mobile screens */
+  @media (max-width: 768px) {
+    .footer-background img {
+      width: 150px;
+      height: 170px;
+    }
   }
+  
+.footer-background .image1 { top: 10%; left: 50%; }
+.footer-background .image2 { top: 50%; left: 55%; }
+.footer-background .image3 { top: 30%; left: 70%; }
+.footer-background .image4 { top: 80%; left: 65%; }
+.footer-background .image5 { top: 1%; left: 30%; }
+.footer-background .image6 { top: 20%; left: 9%; }
+.footer-background .image7 { top: 60%; left: 20%; }
+.footer-background .image8 { top: 80%; left: 40%; }
+.footer-background .image9 { top: 20%; left: 10%; }
+.footer-background .image10 { top: 20%; left: 10%; }
+.footer-background .image11 { top: 10%; left: 80%; }
+.footer-background .image12 { top: 25%; left: 60%; }
+.footer-background .image13 { top: 15%; left: 40%; }
+.footer-background .image14 { top: 70%; left: 85%; }
+.footer-background .image15 { top: 45%; left: 15%; }
+.footer-background .image16 { top: 55%; left: 35%; }
+.footer-background .image17 { top: 35%; left: 85%; }
+.footer-background .image18 { top: 65%; left: 20%; }
+.footer-background .image19 { top: 5%; left: 25%; }
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.c-footer-bar {
+  width: 100%;
+  position: absolute;
+  top: 85%;
+  left: 2%;
+  padding: 0 44px;
+  z-index: 20;
+  color: white;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+}
+
+.address svg {
+  margin-right: 8px;
+}
+
+.address a {
+  color: white;
+  text-decoration: none;
+}
+
+.col-1, .col-2, .col-3, .col-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.col-1 a, .col-2 a, .col-3 a, .col-4 a {
+  
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.col-1 a:hover, .col-2 a:hover, .col-3 a:hover, .col-4 a:hover {
+  color: #ccc;
 }
