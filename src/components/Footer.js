@@ -63,7 +63,7 @@ export default function Footer() {
             scale: 0.5,
             z: 950,
             duration: 20,
-            ease: 'power3.out',
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: '.footer-section',
               start: 'top top',
@@ -80,7 +80,7 @@ export default function Footer() {
       images.forEach((image, index) => {
         setTimeout(() => {
           animateImage(image);
-        }, index * 2500);
+        }, index * 2000);
       });
 
       return () => {
@@ -99,8 +99,11 @@ export default function Footer() {
             className={`image image${i + 1} absolute w-[20%] h-[20%] object-cover`}
             src={`/image/image${i + 1}.jpg`}
             alt={`Footer image ${i + 1}`}
-            loading="lazy"
-            fetchPriority='high'
+            width={500} // Set appropriate width
+            height={500} // Set appropriate height
+            layout="intrinsic"
+            priority={i === 0} // Prioritize the first image for LCP
+            loading={i === 0 ? "eager" : "lazy"} // Lazy load except for the first image
           />
         ))}
       </div>
