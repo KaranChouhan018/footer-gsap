@@ -87,8 +87,6 @@ export default function Footer() {
     const mediaElements = gsap.utils.toArray('.footer-background video, .footer-background img');
     const staggerDelay = 2000; // Adjust the stagger delay
     mediaElements.forEach((media, index) => {
-      
-      gsap.set(media, { opacity: 0 });
       if (index === 0) {
         animateMedia(media, index, animateNextMedia);
       } else {
@@ -115,7 +113,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="footer-section relative w-full h-screen overflow-hidden bg-black">
+    <footer className="footer-section w-full h-screen overflow-hidden bg-black relative">
       <div ref={footerBackgroundRef} className="footer-background absolute top-0 left-0 w-full h-full z-10">
         {Array.from({ length: 19 }).map((_, i) => {
           switch (i) {
