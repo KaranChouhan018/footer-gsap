@@ -6,9 +6,13 @@ import Image from 'next/image';
 
 const animateMedia = (media, index, animateNextMedia) => {
   if (!media) return;
+
+
+  // Set the initial opacity to 0
+  
   const animation = gsap.fromTo(
     media,
-    { opacity: 0, scale: 0.5, z: -500 },
+    {  opacity:0, scale: 0.5, z: -500 },
     {
       opacity: 1,
       scale: 0.5,
@@ -19,10 +23,12 @@ const animateMedia = (media, index, animateNextMedia) => {
         trigger: '.footer-section',
         start: 'top top',
         markers: true,
-        toggleActions: 'play none none none',
         id: `media-${index}`,
       },
       onComplete: () => {
+        if (media.tagName.toLowerCase() === 'video') {
+          media.play().catch(err => console.error(`Error playing video${index + 1}: `, err));
+        }
         animateNextMedia();
       },
     }
@@ -62,20 +68,27 @@ export default function Footer() {
   const animateNextMedia = useCallback(() => {
     const mediaElements = gsap.utils.toArray('.footer-background video, .footer-background img');
     const media = mediaElements[currentIndexRef.current];
+    
     if (media) {
-      animateMedia(media, currentIndexRef.current, animateNextMedia);
+      animateMedia(media, currentIndexRef.current, () => {
+        currentIndexRef.current++;
+        if (currentIndexRef.current >= mediaElements.length) {
+          currentIndexRef.current = 0;
+        }
+        console.log(`Current index: ${currentIndexRef.current}`);
+        // Trigger the next media animation after the current one completes
+        animateNextMedia();
+      });
     }
-    currentIndexRef.current++;
-    if (currentIndexRef.current >= mediaElements.length) {
-      currentIndexRef.current = 0;
-    }
-    console.log(`Current index: ${currentIndexRef.current}`);
   }, []);
 
-  const staggerAnimations = useCallback(() => {
+
+    const staggerAnimations = useCallback(() => {
     const mediaElements = gsap.utils.toArray('.footer-background video, .footer-background img');
-    const staggerDelay = 4000;
+    const staggerDelay = 2000; // Adjust the stagger delay
     mediaElements.forEach((media, index) => {
+      
+      gsap.set(media, { opacity: 0 });
       if (index === 0) {
         animateMedia(media, index, animateNextMedia);
       } else {
@@ -86,8 +99,7 @@ export default function Footer() {
         );
       }
     });
-  }, [animateNextMedia]);
-
+  }, [animateNextMedia])
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     window.addEventListener('mousemove', moveBackground);
@@ -105,7 +117,7 @@ export default function Footer() {
   return (
     <footer className="footer-section relative w-full h-screen overflow-hidden bg-black">
       <div ref={footerBackgroundRef} className="footer-background absolute top-0 left-0 w-full h-full z-10">
-        {Array.from({ length: 20 }).map((_, i) => {
+        {Array.from({ length: 19 }).map((_, i) => {
           switch (i) {
             case 0:
             case 2:

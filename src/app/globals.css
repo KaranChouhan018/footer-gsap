@@ -41,12 +41,12 @@
     position: absolute;
     width: 400px; 
     height: 400px; /* Video will be above the images */
+    opacity: 0;
     will-change: transfrom;
+    transform: translateZ(-500px) ;
+    will-change: transform;
     aspect-ratio: auto;
   }
-
-
-
   /* Media query for mobile screens */
   @media (max-width: 768px) {
     .footer-background img {
@@ -60,27 +60,28 @@
       aspect-ratio: auto;
     }
   }
+
   
-  .footer-background .image1 { top: 15%; left: 25%; }
+  
+  .footer-background .video1 { top: 15%; left: 25%; }
   .footer-background .image2 { top: 45%; left: 50%; }
-  .footer-background .image3 { top: 60%; left: 75%; }
+  .footer-background .video3 { top: 60%; left: 75%; }
   .footer-background .image4 { top: 50%; left: 60%; }
   .footer-background .image5 { top: 30%; left: 15%; }
-  .footer-background .image6 { top: 85%; left: 5%; }
+  .footer-background .video6 { top: 85%; left: 5%; }
   .footer-background .image7 { top: 25%; left: 70%; }
   .footer-background .image8 { top: 50%; left: 10%; }
-  .footer-background .image9 { top: 70%; left: 30%; }
+  .footer-background .video9 { top: 70%; left: 30%; }
   .footer-background .image10 { top: 20%; left: 90%; }
-  .footer-background .image11 { top: 35%; left: 5%; }
+  .footer-background .video11 { top: 35%; left: 5%; }
   .footer-background .image12 { top: 65%; left: 85%; }
   .footer-background .image13 { top: 55%; left: 40%; }
   .footer-background .image14 { top: 5%; left: 35%; }
-  .footer-background .image15 { top: 75%; left: 60%; }
+  .footer-background .video15 { top: 75%; left: 60%; }
   .footer-background .image16 { top: 40%; left: 80%; }
   .footer-background .image17 { top: 19%; left: 55%; }
   .footer-background .image18 { top: 30%; left: 90%; }
   .footer-background .image19 { top: 60%; left: 15%; }
-  .footer-background .image20 { top: 50%; left: 5%; }
   
 
 .footer-content {
