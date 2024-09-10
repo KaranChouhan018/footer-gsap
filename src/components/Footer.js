@@ -28,9 +28,17 @@ const animateMedia = (media, index, animateNextMedia) => {
     }
   );
 };
-
 const handleMouseMove = (footerBackgroundRef) => (e) => {
-  const { clientX, clientY } = e; // Get mouse position
+  let clientX, clientY;
+  if (e.type === 'mousemove') {
+    // Get mouse position
+    clientX = e.clientX;
+    clientY = e.clientY;
+  } else if (e.type === 'touchmove') {
+    // Get touch position
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
+  }
 
   // Calculate movement values (adjust factor to control intensity)
   const moveX = (clientX - window.innerWidth / 2) * -0.05; // Negative for opposite direction
@@ -40,11 +48,10 @@ const handleMouseMove = (footerBackgroundRef) => (e) => {
   gsap.to(footerBackgroundRef.current, {
     x: moveX,
     y: moveY,
-    duration: 0.5, // Duration of the movement
+    duration: 1, // Duration of the movement
     ease: 'power1.out' // Smooth easing for the effect
   });
 };
-
 export default function Footer() {
   const footerBackgroundRef = useRef(null);
   const currentIndexRef = useRef(0);
@@ -84,10 +91,12 @@ export default function Footer() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     window.addEventListener('mousemove', moveBackground);
+    window.addEventListener('touchmove', moveBackground);
     staggerAnimations();
 
     return () => {
       window.removeEventListener('mousemove', moveBackground);
+      window.removeEventListener('touchmove', moveBackground);
       animationTimeoutsRef.current.forEach(clearTimeout);
     };
   }, [moveBackground, staggerAnimations]);
@@ -137,7 +146,7 @@ export default function Footer() {
       </div>
 
       {/* New Footer Bar Section */}
-      <div className="c-footer-bar grid grid-rows-4 md:grid-cols-4 gap-2 md:gap-4 p-6 text-white">
+      <div className="c-footer-bar grid grid-cols-2  md:grid-cols-2 gap-2 md:gap-4 lg:grid-cols-4 p-6 text-white">
         <div className="col-1">
           <p className="address">
             <svg width="11px" height="15px" viewBox="0 0 11 15" xmlns="http://www.w3.org/2000/svg">
