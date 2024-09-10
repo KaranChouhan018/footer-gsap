@@ -29,8 +29,11 @@
     position: absolute;
     background-size: cover;
     background-position: center;
+    width: 400px;
+    height: 400px;
     opacity: 0;
     transform: translateZ(-500px) scale(0.1);
+    will-change: transform;
   }
 
   /* Media query for mobile screens */
@@ -60,6 +63,7 @@
 .footer-background .image17 { top: 35%; left: 85%; }
 .footer-background .image18 { top: 65%; left: 20%; }
 .footer-background .image19 { top: 5%; left: 25%; }
+.footer-background .image20 { top: 52%; left: 99%; }
 
 .footer-content {
     position: relative;
